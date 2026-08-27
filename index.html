@@ -6,49 +6,86 @@
 <title>ps4 jailbreak - IFIXSTORE</title>
 <style>
   html, body {
-        background-image: url('ifix.png'); 
-        background-size: 100% 100%;          
-        background-position: center;          
-        background-repeat: no-repeat;         
-        background-attachment: fixed;         
-        background-color: #000;
+        background-color: #0b0d10;
+        background-image: radial-gradient(circle at center, #151a21 0%, #0b0d10 100%);
+        color: #c8ced8;
         margin: 0;
-        height: 100vh;
+        min-height: 100vh;
         font-family: system-ui, -apple-system, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px;
     }
 
-  #wrap { padding: 30px 40px; max-width: 600px; margin: auto; }
+  /* الهيدر واللوجو المصغر الأنيق */
+  #header {
+      text-align: center;
+      margin-bottom: 20px;
+  }
+  #header img {
+      width: 270px; /* حجم صغير ومناسب للعين */
+          height: auto;
+      margin-bottom: 5px;
+      border-radius: 13%
+  }
+  #header .phones {
+      font-size: 17px;
+      color: #ffffff;
+      letter-spacing: 1px;
+      font-style: italic;
+      font-weight: 800;
+  }
+
+  #wrap { 
+      width: 600px; 
+      background: rgb(36 72 125 / 90%);
+      border: 1px solid rgba(88, 116, 163, 0.2);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  }
   
   /* تصميم شريط التقدم */
   #progress-container {
       width: 100%;
       background-color: rgba(30, 39, 50, 0.8);
-      border-radius: 8px;
-      margin: 0 0 15px 0;
+      border-radius: 6px;
+      margin-bottom: 15px;
       overflow: hidden;
       border: 1px solid rgba(88, 116, 163, 0.4);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
   }
   #progress-bar {
       width: 0%;
-      height: 28px;
+      height: 24px;
       background: linear-gradient(90deg, #1e5799, #2989d8, #207cca);
       text-align: center;
       color: white;
-      line-height: 28px;
+      line-height: 24px;
       font-weight: bold;
-      font-size: 14px;
-      transition: width 0.2s ease;
+      font-size: 13px;
+      transition: width 0.3s ease;
   }
 
-  #state { font-size:22px; font-weight:700; margin:0 0 6px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-  #det { font-size:13px; color:#c8ced8; margin:0 0 4px; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
-  #det b { color:#7fd0a0; font-weight:600; }
-  #cache { font-size:12px; color:#8b95a3; margin:0 0 10px; min-height:14px; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
-  #cache.cacheok { color:#7fd0a0; }
-  .ok { color:#7fd0a0; } .bad { color:#d08a7f; } .warn { color:#d8c07f; }
-</style>
-</head>
+  #state { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #46b176; }
+  
+  #out { 
+      white-space: pre-wrap; 
+      font: 11px/1.45 Consolas, monospace;
+      background: #080a0d; 
+      border: 1px solid #1e2732; 
+      border-radius: 6px;
+      padding: 10px; 
+      height: 160px; 
+      overflow-y: auto; 
+      color: #c8ced8;
+  }
+
+  .ok { color:#7fd0a0; } 
+  .bad { color:#c12c15; } 
+  .warn { color:#d8c07f; }
+</style></head>
 <body>
 
 <div id="wrap">
