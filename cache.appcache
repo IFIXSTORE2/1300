@@ -1,7 +1,7 @@
 CACHE MANIFEST
-# build 91f8e3dae30bb
+# build 574bac6f828ad
 
-index.html #2d0ac397bb3509d4b1dab26ebdba86e6ea063f8979b2ff95a2c57e7feeae28f0
+index.html #5834fbf5877d695456f8c3da1258db7d6cd710a522389aab82ff80592297dac4
 run_lapse.html #94a719588ab4bf91f68617bdc8ac31e3a0d9cc818b376e7249794113cf543403
 run_poops.html #2bc85d77277e950b9b91e790f44cda064ed835b6170f148206889f0a5a0a002a
 chain_lapse.js #fd0cc044e03be88d1c89089a7d8dbb2d2c9ea2f3a485f0ab9089bb36d92d1a34
@@ -21,3 +21,8 @@ patches/1300.bin #be70930d96c40b8d7ba03a57e2ea5c834b606fb74ed118756b4dea7fffaa1d
 
 NETWORK:
 *
+
+FALLBACK:
+index.html index.html
+run_lapse.html run_lapse.html
+run_poops.html run_poops.html
