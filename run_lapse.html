@@ -3,30 +3,117 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ps4 lapse</title>
+<title>ps4 jailbreak - IFIXSTORE</title>
 <style>
-  html, body { margin:0; padding:0; background:#0b0d10; color:#c8ced8;
-               font:15px/1.45 "Segoe UI", system-ui, sans-serif; }
-  #wrap { padding:16px 18px; }
-  #state { font-size:22px; font-weight:700; margin:0 0 10px; }
-  #out { white-space:pre-wrap; font:12px/1.45 Consolas, monospace;
-         background:#11151b; border:1px solid #1e2732; border-radius:5px;
-         padding:10px 12px; height:calc(100vh - 141px); overflow-y:auto; }
-  .ok { color:#7fd0a0; } .bad { color:#d08a7f; } .warn { color:#d8c07f; }
-  #brand { text-align:center; padding:8px 10px; background:#0e1116;
-           border-bottom:1px solid #1e2732; }
-  #brand img { width:28px; height:28px; margin-right:8px; border-radius:50%;
-               vertical-align:middle; }
-  #brand b { font-size:15px; font-weight:700; letter-spacing:.14em;
-             color:#e6ebf2; vertical-align:middle; }
+  html, body {
+        background-image: url('ifix.png'); 
+        background-size: 100% 100%;          
+        background-position: center;          
+        background-repeat: no-repeat;         
+        background-attachment: fixed;         
+        background-color: #000;
+        margin: 0;
+        height: 100vh;
+        font-family: system-ui, -apple-system, sans-serif;
+    }
+
+  #wrap { padding: 30px 40px; max-width: 600px; margin: auto; }
+  
+  /* تصميم شريط التقدم */
+  #progress-container {
+      width: 100%;
+      background-color: rgba(30, 39, 50, 0.8);
+      border-radius: 8px;
+      margin: 0 0 15px 0;
+      overflow: hidden;
+      border: 1px solid rgba(88, 116, 163, 0.4);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  }
+  #progress-bar {
+      width: 0%;
+      height: 28px;
+      background: linear-gradient(90deg, #1e5799, #2989d8, #207cca);
+      text-align: center;
+      color: white;
+      line-height: 28px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: width 0.3s ease;
+  }
+
+  #state { font-size:22px; font-weight:700; margin:0 0 10px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+  
+  #out { 
+      white-space: pre-wrap; 
+      font: 11px/1.45 Consolas, monospace;
+      background: rgba(17, 21, 27, 0.85); 
+      border: 1px solid rgba(30, 39, 50, 0.8); 
+      border-radius: 6px;
+      padding: 10px 12px; 
+      height: 300px; 
+      overflow-y: auto; 
+      color: #c8ced8;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  }
+
+  .ok { color:#7fd0a0; } 
+  .bad { color:#d08a7f; } 
+  .warn { color:#d8c07f; }
 </style>
 </head>
 <body>
-<div id="brand"><img src="IFIXSTORE.png" alt="" width="28" height="28"><b>IFIXSTORE</b></div>
+
 <div id="wrap">
+  <!-- شريط التقدم -->
+  <div id="progress-container">
+    <div id="progress-bar" id="progressBar">0%</div>
+  </div>
+
   <div id="state">loading lapse chain...</div>
   <div id="out"></div>
 </div>
-<script type="module">import "./chain_lapse.js";</script>
+
+<!-- السكربت المسؤول عن ربط حركات الثغرة بشريط التقدم تلقائياً -->
+<script>
+    // دالة لتحديث شريط التقدم ديناميكياً
+    function setProgress(percent, text) {
+        var bar = document.getElementById("progress-bar");
+        if (bar) {
+            bar.style.width = percent + "%";
+            bar.textContent = percent + "%" + (text ? " - " + text : "");
+        }
+    }
+
+    // مراقبة ذكية ومحدثة لالتقاط حالات النجاح النهائية
+    const observer = new MutationObserver(function(mutations) {
+        var stateText = document.getElementById("state").textContent.toLowerCase();
+        var outText = document.getElementById("out").innerText.toLowerCase();
+
+        // التحقق أولاً من اكتمال الثغرة بنجاح نهائياً
+        if (outText.includes("all done") || outText.includes("chain=complete") || stateText.includes("done") || stateText.includes("success")) {
+            setProgress(100, "Completed successfully!");
+        } else if (stateText.includes("exploit") || stateText.includes("trigger") || outText.includes("kernel")) {
+            setProgress(75, "Triggering Exploit...");
+        } else if (stateText.includes("spray") || outText.includes("spray") || outText.includes("socket")) {
+            setProgress(40, "Memory Spraying...");
+        } else if (stateText.includes("initializing") || stateText.includes("loading")) {
+            setProgress(20, "Initializing...");
+        }
+    });
+
+    window.addEventListener("DOMContentLoaded", function() {
+        var targetNode = document.getElementById("state");
+        if (targetNode) {
+            observer.observe(targetNode, { childList: true, characterData: true, subtree: true });
+        }
+        var outNode = document.getElementById("out");
+        if (outNode) {
+            observer.observe(outNode, { childList: true, characterData: true, subtree: true });
+        }
+        setProgress(10, "Starting...");
+    });
+</script>
+<!-- تشغيل ملف الثغرة الأساسي دون أي تعديل عليه -->
+<script type="module" src="chain_lapse.js"></script>
 </body>
 </html>
